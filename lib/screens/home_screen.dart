@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_mobile/screens/ar_view.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -59,7 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ARView()));
+                        },
                         child: Card(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
