@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/utlis/colors.dart';
 import 'package:solar_mobile/widgets/button_widget.dart';
-import 'package:solar_mobile/widgets/text_widget.dart';
 
 import 'home_screen.dart';
 
@@ -25,17 +24,9 @@ class LandingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 200,
-              height: 150,
-              color: Colors.grey,
-              child: Center(
-                child: TextWidget(
-                  text: 'Logo here',
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
+            Image.asset(
+              'assets/images/default_logo.png',
+              height: 250,
             ),
             const SizedBox(
               height: 250,
