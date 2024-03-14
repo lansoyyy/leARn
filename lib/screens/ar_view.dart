@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 
-class ARView extends StatelessWidget {
-  const ARView({super.key});
+class ARView extends StatefulWidget {
+  String file;
+  ARView({super.key, required this.file});
 
+  @override
+  State<ARView> createState() => _ARViewState();
+}
+
+class _ARViewState extends State<ARView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,9 +18,9 @@ class ARView extends StatelessWidget {
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
         ),
-        body: const ModelViewer(
-          backgroundColor: Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
-          src: 'assets/models/shapeTriangle.glb',
+        body: ModelViewer(
+          backgroundColor: const Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
+          src: 'assets/models/${widget.file}.glb',
           alt: 'A 3D model of an astronaut',
           ar: true,
           autoRotate: true,

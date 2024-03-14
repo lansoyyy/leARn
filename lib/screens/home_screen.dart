@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 20),
                 child: TextWidget(
-                  text: 'Welcome Lance,',
+                  text: 'Welcome User,',
                   fontSize: 24,
                   fontFamily: 'Bold',
                   color: Colors.white,
@@ -61,8 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ARView()));
+                          if (index == 2) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ARView(
+                                      file: 'colorRed',
+                                    )));
+                          } else if (index == 3) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ARView(
+                                      file: 'shapeTriangle2',
+                                    )));
+                          }
                         },
                         child: Card(
                           child: Column(

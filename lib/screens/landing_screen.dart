@@ -13,19 +13,13 @@ class LandingScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF8C52FF), Color(0xFFFF914D)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        decoration: const BoxDecoration(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/default_logo.png',
+              'assets/images/logo-removebg-preview.png',
               height: 250,
             ),
             const SizedBox(
