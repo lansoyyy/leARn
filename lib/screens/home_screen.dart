@@ -11,95 +11,136 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> items = [
-    {'name': 'Letters', 'image': 'assets/images/letter.jpg'},
-    {'name': 'Numbers', 'image': 'assets/images/number.jpg'},
-    {'name': 'Colors', 'image': 'assets/images/color.jpg'},
-    {'name': 'Shapes', 'image': 'assets/images/shape.jpg'},
+    {
+      'name': 'Letters',
+      'image':
+          'assets/images/419062210_1086964282361331_2454761638516789093_n.jpg'
+    },
+    {
+      'name': 'Numbers',
+      'image':
+          'assets/images/431506628_366668399674835_3064160533770526119_n.jpg'
+    },
+    {
+      'name': 'Colors',
+      'image':
+          'assets/images/432266951_3453808831577914_2560143994274601835_n.jpg'
+    },
+    {
+      'name': 'Shapes',
+      'image':
+          'assets/images/431640890_3202768256696653_6398067143436399784_n.jpg'
+    },
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: TextWidget(
-          text: 'Home',
-          fontSize: 18,
-          color: Colors.black,
-          fontFamily: 'Bold',
-        ),
-        centerTitle: true,
-      ),
-      body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF8C52FF), Color(0xFFFF914D)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+      body: SafeArea(
+        child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/432488241_433203445943170_352186029455523305_n.jpg',
+                  ),
+                  fit: BoxFit.cover),
             ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 20),
-                child: TextWidget(
-                  text: 'Welcome User,',
-                  fontSize: 24,
-                  fontFamily: 'Bold',
-                  color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 5, 20, 20),
+                  child: TextWidget(
+                    text: 'Welcome',
+                    fontSize: 20,
+                    fontFamily: 'Bold',
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: GridView.builder(
-                  itemCount: items.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
                       child: GestureDetector(
                         onTap: () {
-                          if (index == 2) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ARView(
-                                      file: 'colorRed',
-                                    )));
-                          } else if (index == 3) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ARView(
-                                      file: 'shapeTriangle2',
-                                    )));
-                          }
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ARView(
+                                    file: 'shapeTriangle2',
+                                  )));
                         },
-                        child: Card(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                items[index]['image'],
-                                height: 125,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              TextWidget(
-                                text: items[index]['name'],
-                                fontSize: 16,
-                                fontFamily: 'Bold',
-                              ),
-                            ],
-                          ),
+                        child: Image.asset(
+                          items[0]['image'],
+                          height: 200,
+                          width: 150,
                         ),
                       ),
-                    );
-                  },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ARView(
+                                    file: 'shapeTriangle2',
+                                  )));
+                        },
+                        child: Image.asset(
+                          items[1]['image'],
+                          height: 200,
+                          width: 150,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          )),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ARView(
+                                    file: 'shapeTriangle2',
+                                  )));
+                        },
+                        child: Image.asset(
+                          items[2]['image'],
+                          height: 200,
+                          width: 150,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ARView(
+                                    file: 'shapeTriangle2',
+                                  )));
+                        },
+                        child: Image.asset(
+                          items[3]['image'],
+                          height: 200,
+                          width: 150,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )),
+      ),
     );
   }
 }
