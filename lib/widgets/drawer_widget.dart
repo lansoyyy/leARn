@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
-import '../utlis/colors.dart';
+import '../utils/colors.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solar_mobile/utlis/colors.dart';
+import 'package:solar_mobile/utils/colors.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String? hint;

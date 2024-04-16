@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/widgets/drawer_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ARView(
-                                    file: 'shapeTriangle2',
+                                    file: 'letterA',
                                   )));
                         },
                         child: Image.asset(
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ARView(
-                                    file: 'shapeTriangle2',
+                                    file: 'number1',
                                   )));
                         },
                         child: Image.asset(
