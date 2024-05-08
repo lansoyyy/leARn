@@ -4,7 +4,12 @@ import 'package:solar_mobile/widgets/drawer_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  String name;
+
+  HomeScreen({
+    super.key,
+    required this.name,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -53,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(5, 5, 20, 20),
                   child: TextWidget(
-                    text: 'Welcome',
-                    fontSize: 20,
+                    text: 'Welcome ${widget.name}',
+                    fontSize: 18,
                     fontFamily: 'Bold',
                     color: Colors.black,
                   ),
