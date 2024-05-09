@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/quiz/colors_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class ColorsPage extends StatelessWidget {
@@ -17,6 +18,17 @@ class ColorsPage extends StatelessWidget {
           fontFamily: 'Bold',
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ColorsQuizPage()));
+            },
+            icon: const Icon(
+              Icons.quiz,
+            ),
+          ),
+        ],
       ),
       body: GridView.builder(
         itemCount: 8,

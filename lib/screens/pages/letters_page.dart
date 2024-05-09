@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/quiz/letter_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class LettersPage extends StatelessWidget {
@@ -17,6 +18,17 @@ class LettersPage extends StatelessWidget {
           fontFamily: 'Bold',
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const LetterQuizPage()));
+            },
+            icon: const Icon(
+              Icons.quiz,
+            ),
+          ),
+        ],
       ),
       body: GridView.builder(
         itemCount: 4,

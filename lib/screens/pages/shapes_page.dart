@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/quiz/shapes_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class ShapesPage extends StatelessWidget {
@@ -17,6 +18,17 @@ class ShapesPage extends StatelessWidget {
           fontFamily: 'Bold',
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ShapesQuizPage()));
+            },
+            icon: const Icon(
+              Icons.quiz,
+            ),
+          ),
+        ],
       ),
       body: GridView.builder(
         itemCount: 8,

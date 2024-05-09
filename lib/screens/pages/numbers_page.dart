@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/quiz/numbers_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class NumbersPage extends StatelessWidget {
@@ -16,6 +17,17 @@ class NumbersPage extends StatelessWidget {
           fontSize: 18,
           fontFamily: 'Bold',
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const NumbersQuizPage()));
+            },
+            icon: const Icon(
+              Icons.quiz,
+            ),
+          ),
+        ],
         centerTitle: true,
       ),
       body: GridView.builder(
