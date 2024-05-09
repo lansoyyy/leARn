@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/pages/colors_page.dart';
+import 'package:solar_mobile/screens/pages/letters_page.dart';
+import 'package:solar_mobile/screens/pages/numbers_page.dart';
+import 'package:solar_mobile/screens/pages/shapes_page.dart';
 import 'package:solar_mobile/widgets/drawer_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
@@ -75,9 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ARView(
-                                    file: 'letterA',
-                                  )));
+                              builder: (context) => const LettersPage()));
                         },
                         child: Image.asset(
                           items[0]['image'],
@@ -91,9 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ARView(
-                                    file: 'number1',
-                                  )));
+                              builder: (context) => const NumbersPage()));
                         },
                         child: Image.asset(
                           items[1]['image'],
@@ -115,9 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ARView(
-                                    file: 'colorRed',
-                                  )));
+                              builder: (context) => const ColorsPage()));
                         },
                         child: Image.asset(
                           items[2]['image'],
@@ -131,9 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ARView(
-                                    file: 'shapeTriangle2',
-                                  )));
+                              builder: (context) => const ShapesPage()));
                         },
                         child: Image.asset(
                           items[3]['image'],

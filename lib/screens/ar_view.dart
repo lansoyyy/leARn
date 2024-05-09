@@ -20,7 +20,7 @@ class _ARViewState extends State<ARView> {
         ),
         body: ModelViewer(
           backgroundColor: const Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
-          src: 'assets/models/${widget.file}.glb',
+          src: widget.file,
           alt: 'A 3D model of an astronaut',
           ar: true,
           autoRotate: true,
