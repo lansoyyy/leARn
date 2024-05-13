@@ -40,7 +40,7 @@ class _ColorsQuizPageState extends State<ColorsQuizPage> {
               height: 20,
             ),
             Image.asset(
-              'assets/images/colors/${_currentQuestionIndex + 1}.jpg',
+              'assets/images/colors/new/${_currentQuestionIndex + 1}.jpg',
             ),
             _buildQuizBody(),
           ],

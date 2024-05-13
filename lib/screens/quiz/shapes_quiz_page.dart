@@ -40,7 +40,7 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
               height: 20,
             ),
             Image.asset(
-              'assets/images/shapes/${_currentQuestionIndex + 1}.jpg',
+              'assets/images/shapes/new/${_currentQuestionIndex + 1}.jpg',
             ),
             _buildQuizBody(),
           ],
