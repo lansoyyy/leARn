@@ -14,7 +14,7 @@ class LetterQuizPage extends StatefulWidget {
 class _LetterQuizPageState extends State<LetterQuizPage> {
   int _currentQuestionIndex = 0;
   final List<String> _questions = [
-    for (int i = 0; i < 4; i++) 'What letter is this?',
+    for (int i = 0; i < 4; i++) 'What is the first letter of the word?',
   ];
   final List<List<String>> _options = [
     for (int i = 0; i < 4; i++) ['A', 'B', 'C', 'D'],
@@ -38,7 +38,7 @@ class _LetterQuizPageState extends State<LetterQuizPage> {
               height: 20,
             ),
             Image.asset(
-              'assets/images/letters/${_currentQuestionIndex + 1}.jpg',
+              'assets/images/letters/new/${_currentQuestionIndex + 1}.jpg',
             ),
             _buildQuizBody(),
           ],

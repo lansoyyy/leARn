@@ -75,6 +75,8 @@ flutter:
     - assets/images/shapes/
     - assets/images/colors/new/
     - assets/images/shapes/new/
+    - assets/images/numbers/new/
+    - assets/images/letters/new/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

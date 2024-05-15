@@ -14,7 +14,7 @@ class NumbersQuizPage extends StatefulWidget {
 class _NumbersQuizPageState extends State<NumbersQuizPage> {
   int _currentQuestionIndex = 0;
   final List<String> _questions = [
-    for (int i = 0; i < 10; i++) 'What number is this?',
+    for (int i = 0; i < 10; i++) 'How many items are there?',
   ];
   final List<List<String>> _options = [
     for (int i = 0; i < 5; i++) ['1', '2', '3', '4', '5'],
@@ -40,7 +40,7 @@ class _NumbersQuizPageState extends State<NumbersQuizPage> {
               height: 20,
             ),
             Image.asset(
-              'assets/images/numbers/${_currentQuestionIndex + 1}.jpg',
+              'assets/images/numbers/new/${_currentQuestionIndex + 1}.jpg',
             ),
             _buildQuizBody(),
           ],
