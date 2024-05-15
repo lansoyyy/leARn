@@ -2,10 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/home_screen.dart';
+import 'package:solar_mobile/services/add_points.dart';
 import 'package:solar_mobile/widgets/toast_widget.dart';
 
 class ColorsQuizPage extends StatefulWidget {
-  const ColorsQuizPage({super.key});
+  String name;
+
+  ColorsQuizPage({
+    super.key,
+    required this.name,
+  });
 
   @override
   _ColorsQuizPageState createState() => _ColorsQuizPageState();
@@ -157,6 +163,7 @@ class _ColorsQuizPageState extends State<ColorsQuizPage> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
+                addScore(widget.name, score, 'Color');
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 // Reset quiz

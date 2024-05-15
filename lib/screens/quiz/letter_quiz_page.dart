@@ -2,10 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/home_screen.dart';
+import 'package:solar_mobile/services/add_points.dart';
 import 'package:solar_mobile/widgets/toast_widget.dart';
 
 class LetterQuizPage extends StatefulWidget {
-  const LetterQuizPage({super.key});
+  String name;
+
+  LetterQuizPage({
+    super.key,
+    required this.name,
+  });
 
   @override
   _LetterQuizPageState createState() => _LetterQuizPageState();
@@ -155,6 +161,7 @@ class _LetterQuizPageState extends State<LetterQuizPage> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
+                addScore(widget.name, score, 'Letter');
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 // Reset quiz

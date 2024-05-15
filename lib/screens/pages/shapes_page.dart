@@ -4,7 +4,12 @@ import 'package:solar_mobile/screens/quiz/shapes_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class ShapesPage extends StatelessWidget {
-  const ShapesPage({super.key});
+  String name;
+
+  ShapesPage({
+    super.key,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,9 @@ class ShapesPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ShapesQuizPage()));
+                  builder: (context) => ShapesQuizPage(
+                        name: name,
+                      )));
             },
             icon: const Icon(
               Icons.quiz,

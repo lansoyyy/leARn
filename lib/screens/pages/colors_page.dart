@@ -4,7 +4,12 @@ import 'package:solar_mobile/screens/quiz/colors_quiz_page.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class ColorsPage extends StatelessWidget {
-  const ColorsPage({super.key});
+  String name;
+
+  ColorsPage({
+    super.key,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,9 @@ class ColorsPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ColorsQuizPage()));
+                  builder: (context) => ColorsQuizPage(
+                        name: name,
+                      )));
             },
             icon: const Icon(
               Icons.quiz,

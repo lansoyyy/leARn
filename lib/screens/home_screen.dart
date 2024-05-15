@@ -79,7 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LettersPage()));
+                              builder: (context) => LettersPage(
+                                    name: widget.name,
+                                  )));
                         },
                         child: Image.asset(
                           items[0]['image'],
@@ -93,7 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const NumbersPage()));
+                              builder: (context) => NumbersPage(
+                                    name: widget.name,
+                                  )));
                         },
                         child: Image.asset(
                           items[1]['image'],
@@ -115,7 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ColorsPage()));
+                              builder: (context) => ColorsPage(
+                                    name: widget.name,
+                                  )));
                         },
                         child: Image.asset(
                           items[2]['image'],
@@ -129,7 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ShapesPage()));
+                              builder: (context) => ShapesPage(
+                                    name: widget.name,
+                                  )));
                         },
                         child: Image.asset(
                           items[3]['image'],
