@@ -3,7 +3,8 @@ import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class ARView extends StatefulWidget {
   String file;
-  ARView({super.key, required this.file});
+  String name;
+  ARView({super.key, required this.file, required this.name});
 
   @override
   State<ARView> createState() => _ARViewState();

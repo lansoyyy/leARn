@@ -11,6 +11,19 @@ class NumbersPage extends StatelessWidget {
     required this.name,
   });
 
+  List numbers = [
+    'One',
+    'Two',
+    'Three',
+    'Four',
+    'Five',
+    'Six',
+    'Seven',
+    'Eight',
+    'Nine',
+    'Ten',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +61,7 @@ class NumbersPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
+                          name: numbers[index],
                           file: 'assets/images/numbers/${index + 1}.glb',
                         )));
               },

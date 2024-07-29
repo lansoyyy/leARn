@@ -11,6 +11,17 @@ class ColorsPage extends StatelessWidget {
     required this.name,
   });
 
+  List colors = [
+    'Red',
+    'Yellow',
+    'Blue',
+    'Green',
+    'Orange',
+    'Purple',
+    'Pink',
+    'Brown',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +59,7 @@ class ColorsPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
+                          name: colors[index],
                           file: 'assets/images/colors/${index + 1}.glb',
                         )));
               },

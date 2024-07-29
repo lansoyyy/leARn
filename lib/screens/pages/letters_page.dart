@@ -11,6 +11,13 @@ class LettersPage extends StatelessWidget {
     required this.name,
   });
 
+  List letters = [
+    'A',
+    'B',
+    'C',
+    'D',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +55,7 @@ class LettersPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
+                          name: letters[index],
                           file: 'assets/images/letters/${index + 1}.glb',
                         )));
               },

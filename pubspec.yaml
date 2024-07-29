@@ -42,6 +42,7 @@ dependencies:
   fluttertoast:
   get_storage:
   model_viewer_plus:
+  flutter_tts:
 
 dev_dependencies:
   flutter_test:

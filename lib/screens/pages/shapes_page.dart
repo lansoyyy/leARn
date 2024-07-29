@@ -11,6 +11,17 @@ class ShapesPage extends StatelessWidget {
     required this.name,
   });
 
+  List shapes = [
+    'Triangle',
+    'Square',
+    'Diamond',
+    'Star',
+    'Circle',
+    'Oval',
+    'Heart',
+    'Rectangle',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +59,7 @@ class ShapesPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
+                          name: shapes[index],
                           file: 'assets/images/shapes/${index + 1}.glb',
                         )));
               },
