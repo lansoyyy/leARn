@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/firebase_options.dart';
+import 'package:solar_mobile/screens/admin_screen.dart';
 import 'package:solar_mobile/screens/landing_screen.dart';
 
 void main() async {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: LandingScreen(),
+      home: AdminScreen(),
     );
   }
 }
