@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/button_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
@@ -15,6 +16,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   final name = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _LandingScreenState extends State<LandingScreen> {
               radius: 100,
               color: primary,
               label: 'Continue',
-              onPressed: () {
+              onPressed: () async {
                 showDialog(
                   context: context,
                   builder: (context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class ARView extends StatefulWidget {
@@ -11,10 +12,22 @@ class ARView extends StatefulWidget {
 }
 
 class _ARViewState extends State<ARView> {
+  FlutterTts flutterTts = FlutterTts();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.volume_down_outlined),
+          onPressed: () async {
+            await flutterTts.setLanguage("en-US");
+
+            await flutterTts.setVolume(1.0);
+
+            await flutterTts.setPitch(1.0);
+            await flutterTts.speak(widget.name);
+          },
+        ),
         appBar: AppBar(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
