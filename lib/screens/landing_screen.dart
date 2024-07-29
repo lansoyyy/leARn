@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:solar_mobile/screens/admin_screen.dart';
+import 'package:solar_mobile/services/add_login.dart';
 import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/button_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
@@ -66,6 +67,7 @@ class _LandingScreenState extends State<LandingScreen> {
                         ),
                         TextButton(
                           onPressed: () {
+                            addLogin(name.text);
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                                     builder: (context) => HomeScreen(

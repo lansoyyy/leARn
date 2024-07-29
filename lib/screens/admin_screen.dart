@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
+import 'package:intl/intl.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
@@ -13,26 +15,96 @@ class _AdminScreenState extends State<AdminScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    ListView.builder(
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: const Icon(Icons.account_circle),
-          title: TextWidget(
-            text: 'Score: 5',
-            fontSize: 18,
-          ),
-          subtitle: TextWidget(
-            text: 'Lance Olana',
-            fontSize: 12,
-          ),
-          trailing: TextWidget(
-            text: 'Date and Time',
-            fontSize: 12,
-          ),
-        );
-      },
-    ),
-    const SizedBox(),
+    StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('Scores')
+            .orderBy('dateTime', descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            print(snapshot.error);
+            return const Center(child: Text('Error'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Padding(
+              padding: EdgeInsets.only(top: 50),
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: Colors.black,
+              )),
+            );
+          }
+
+          final data = snapshot.requireData;
+          return ListView.builder(
+            itemCount: data.docs.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(
+                  Icons.account_circle,
+                  size: 50,
+                ),
+                title: TextWidget(
+                  text: 'Score: ${data.docs[index]['score']}',
+                  fontSize: 18,
+                ),
+                subtitle: TextWidget(
+                  text: '${data.docs[index]['name']}',
+                  fontSize: 12,
+                ),
+                trailing: TextWidget(
+                  text: DateFormat.yMMMd()
+                      .add_jm()
+                      .format(data.docs[index]['dateTime'].toDate()),
+                  fontSize: 12,
+                ),
+              );
+            },
+          );
+        }),
+    StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('Logins')
+            .orderBy('dateTime', descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            print(snapshot.error);
+            return const Center(child: Text('Error'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Padding(
+              padding: EdgeInsets.only(top: 50),
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: Colors.black,
+              )),
+            );
+          }
+
+          final data = snapshot.requireData;
+          return ListView.builder(
+            itemCount: data.docs.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(
+                  Icons.account_circle,
+                  size: 50,
+                ),
+                title: TextWidget(
+                  text: 'Name: ${data.docs[index]['name']}',
+                  fontSize: 18,
+                ),
+                trailing: TextWidget(
+                  text: DateFormat.yMMMd()
+                      .add_jm()
+                      .format(data.docs[index]['dateTime'].toDate()),
+                  fontSize: 12,
+                ),
+              );
+            },
+          );
+        }),
   ];
 
   void _onItemTapped(int index) {
