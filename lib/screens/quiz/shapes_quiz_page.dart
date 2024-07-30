@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/home_screen.dart';
 import 'package:solar_mobile/services/add_points.dart';
+import 'package:solar_mobile/widgets/text_widget.dart';
 import 'package:solar_mobile/widgets/toast_widget.dart';
 
 class ShapesQuizPage extends StatefulWidget {
@@ -30,6 +31,11 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
     for (int i = 0; i < 4; i++) i,
     for (int i = 0; i < 4; i++) i
   ];
+
+  String answer = '';
+  Color buttonColor = Colors.white;
+
+  List answers = [];
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +76,13 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
         _buildQuestion(),
         const SizedBox(height: 10),
         _buildOptions(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 30),
+
+        TextWidget(
+          text: answer,
+          fontSize: 18,
+          color: Colors.red,
+        ),
 
         // _buildNextButton(),
       ],
@@ -94,7 +106,10 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
         children: _options[_currentQuestionIndex].map((option) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ElevatedButton(
+            child: MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: buttonColor,
                 onPressed: () {
                   if (_currentQuestionIndex == 9) {
                     _showScoreDialog();
@@ -115,17 +130,31 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
 
     if (selectedOption == correctAnswer) {
       setState(() {
+        buttonColor = Colors.green;
         score++;
       });
 
       // Answer is correct
       // You can add your logic here, e.g., increase score, show correct answer
     } else {
+      setState(() {
+        buttonColor = Colors.red;
+
+        answer = 'The correct answer is $correctAnswer';
+      });
       showToast('Wrong answer!');
 
       // Answer is incorrect
       // You can add your logic here, e.g., show correct answer
     }
+    setState(() {
+      answers.add({
+        'number': _currentQuestionIndex,
+        'answer': selectedOption,
+        'isCorrect': selectedOption == correctAnswer
+      });
+    });
+    await Future.delayed(const Duration(seconds: 2));
     _nextQuestion();
 
     // Move to the next question
@@ -133,6 +162,8 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
 
   void _nextQuestion() {
     setState(() {
+      buttonColor = Colors.white;
+      answer = '';
       _currentQuestionIndex++;
       if (_currentQuestionIndex >= _questions.length) {
         // All questions have been answered
@@ -158,8 +189,43 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Quiz Finished'),
-          content: Text(
-              'You answered $score out of ${_questions.length} questions correctly.'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                    'You answered $score out of ${_questions.length} questions correctly.'),
+                const Divider(),
+                for (int i = 0; i < answers.length; i++)
+                  Row(
+                    children: [
+                      TextWidget(
+                        text: '#${answers[i]['number'] + 1}',
+                        fontSize: 14,
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      TextWidget(
+                        text: 'Answer: ${answers[i]['answer']}',
+                        fontSize: 18,
+                        color:
+                            answers[i]['isCorrect'] ? Colors.green : Colors.red,
+                        fontFamily: 'Bold',
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      TextWidget(
+                        text: answers[i]['isCorrect'] ? 'Correct' : 'Wrong',
+                        fontSize: 18,
+                        fontFamily: 'Bold',
+                      ),
+                    ],
+                  ),
+              ],
+            ),
+          ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
