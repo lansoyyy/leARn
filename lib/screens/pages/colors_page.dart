@@ -12,18 +12,19 @@ class ColorsPage extends StatelessWidget {
   });
 
   List colors = [
-    'Red',
-    'Yellow',
     'Blue',
+    'Brown',
     'Green',
     'Orange',
-    'Purple',
     'Pink',
-    'Brown',
+    'Purple',
+    'Red',
+    'Yellow',
   ];
 
   @override
   Widget build(BuildContext context) {
+    print(name);
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
@@ -60,7 +61,8 @@ class ColorsPage extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
                           name: colors[index],
-                          file: 'assets/images/colors/${index + 1}.glb',
+                          file:
+                              'assets/models/Color/Color_${colors[index]}.gltf',
                         )));
               },
               child: Container(
@@ -71,7 +73,7 @@ class ColorsPage extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  'assets/images/colors/${index + 1}.jpg',
+                  'assets/images/colors/${index + 1}${index + 1}.jpg',
                 ),
               ),
             ),

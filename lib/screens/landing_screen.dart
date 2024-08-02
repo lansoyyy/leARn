@@ -32,6 +32,9 @@ class _LandingScreenState extends State<LandingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 50,
+            ),
             Image.asset(
               'assets/images/logo-removebg-preview.png',
               height: 250,
@@ -84,6 +87,9 @@ class _LandingScreenState extends State<LandingScreen> {
                   },
                 );
               },
+            ),
+            const SizedBox(
+              height: 20,
             ),
             TextButton(
               onPressed: () {

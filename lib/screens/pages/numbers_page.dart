@@ -62,7 +62,7 @@ class NumbersPage extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
                           name: numbers[index],
-                          file: 'assets/images/numbers/${index + 1}.glb',
+                          file: 'assets/models/Number/Number_${index + 1}.gltf',
                         )));
               },
               child: Container(

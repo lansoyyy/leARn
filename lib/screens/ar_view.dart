@@ -17,6 +17,7 @@ class _ARViewState extends State<ARView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.volume_down_outlined),
           onPressed: () async {

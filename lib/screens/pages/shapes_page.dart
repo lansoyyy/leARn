@@ -12,14 +12,14 @@ class ShapesPage extends StatelessWidget {
   });
 
   List shapes = [
-    'Triangle',
-    'Square',
-    'Diamond',
-    'Star',
     'Circle',
-    'Oval',
+    'Diamond',
     'Heart',
+    'Oval',
     'Rectangle',
+    'Square',
+    'Star',
+    'Triangle',
   ];
 
   @override
@@ -60,7 +60,8 @@ class ShapesPage extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
                           name: shapes[index],
-                          file: 'assets/images/shapes/${index + 1}.glb',
+                          file:
+                              'assets/models/Shape/Shape_${shapes[index]}.gltf',
                         )));
               },
               child: Container(
@@ -71,7 +72,7 @@ class ShapesPage extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  'assets/images/shapes/${index + 1}.jpg',
+                  'assets/images/shapes/${index + 1}${index + 1}.jpg',
                 ),
               ),
             ),

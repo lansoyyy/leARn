@@ -11,11 +11,33 @@ class LettersPage extends StatelessWidget {
     required this.name,
   });
 
-  List letters = [
+  List<String> letters = [
     'A',
     'B',
     'C',
     'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
   ];
 
   @override
@@ -45,7 +67,7 @@ class LettersPage extends StatelessWidget {
         ],
       ),
       body: GridView.builder(
-        itemCount: 4,
+        itemCount: letters.length,
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
@@ -56,7 +78,8 @@ class LettersPage extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ARView(
                           name: letters[index],
-                          file: 'assets/images/letters/${index + 1}.glb',
+                          file:
+                              'assets/models/Letter/Letter_${letters[index]}.gltf',
                         )));
               },
               child: Container(
@@ -66,8 +89,12 @@ class LettersPage extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                child: Image.asset(
-                  'assets/images/letters/${index + 1}.jpg',
+                child: Center(
+                  child: TextWidget(
+                    text: letters[index],
+                    fontSize: 75,
+                    fontFamily: 'Bold',
+                  ),
                 ),
               ),
             ),
