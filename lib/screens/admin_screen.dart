@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:solar_mobile/screens/landing_screen.dart';
+import 'package:solar_mobile/services/add_admin.dart';
 import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 import 'package:intl/intl.dart';
@@ -63,10 +65,7 @@ class _AdminScreenState extends State<AdminScreen> {
           );
         }),
     StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('Logins')
-            .orderBy('dateTime', descending: true)
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('Admin').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
@@ -95,10 +94,8 @@ class _AdminScreenState extends State<AdminScreen> {
                   text: 'Name: ${data.docs[index]['name']}',
                   fontSize: 18,
                 ),
-                trailing: TextWidget(
-                  text: DateFormat.yMMMd()
-                      .add_jm()
-                      .format(data.docs[index]['dateTime'].toDate()),
+                subtitle: TextWidget(
+                  text: data.docs[index]['email'],
                   fontSize: 12,
                 ),
               );
@@ -116,6 +113,18 @@ class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _selectedIndex == 1
+          ? FloatingActionButton(
+              backgroundColor: Colors.blue,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                showAdminInputDialog(context);
+              },
+            )
+          : const SizedBox(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: primary,
@@ -125,6 +134,55 @@ class _AdminScreenState extends State<AdminScreen> {
           color: Colors.white,
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text(
+                            'Logout Confirmation',
+                            style: TextStyle(
+                                fontFamily: 'QBold',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          content: const Text(
+                            'Are you sure you want to Logout?',
+                            style: TextStyle(fontFamily: 'QRegular'),
+                          ),
+                          actions: <Widget>[
+                            MaterialButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: const Text(
+                                'Close',
+                                style: TextStyle(
+                                    fontFamily: 'QRegular',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            MaterialButton(
+                              onPressed: () async {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LandingScreen()),
+                                );
+                              },
+                              child: const Text(
+                                'Continue',
+                                style: TextStyle(
+                                    fontFamily: 'QRegular',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ));
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -144,6 +202,68 @@ class _AdminScreenState extends State<AdminScreen> {
         selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
+    );
+  }
+
+  void showAdminInputDialog(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Enter Admin Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                ),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                ),
+                obscureText: true,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Submit'),
+              onPressed: () {
+                String name = nameController.text;
+                String email = emailController.text;
+                String password = passwordController.text;
+
+                // You can add logic here to handle the admin details, e.g., validation, saving, etc.
+
+                addAdmin(name, email, password);
+
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:solar_mobile/screens/admin_screen.dart';
@@ -19,6 +20,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   final name = TextEditingController();
+  final email = TextEditingController();
   final password = TextEditingController();
 
   @override
@@ -97,14 +99,23 @@ class _LandingScreenState extends State<LandingScreen> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      content: SizedBox(
-                        height: 100,
-                        child: TextFieldWidget(
-                          controller: password,
-                          label: 'Enter Admin Password',
-                          showEye: true,
-                          isObscure: true,
-                        ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextFieldWidget(
+                            controller: email,
+                            label: 'Enter Email',
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFieldWidget(
+                            controller: password,
+                            label: 'Enter Password',
+                            showEye: true,
+                            isObscure: true,
+                          ),
+                        ],
                       ),
                       actions: [
                         TextButton(
@@ -118,15 +129,26 @@ class _LandingScreenState extends State<LandingScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            if (password.text == 'admin123') {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AdminScreen()));
-                            } else {
-                              Navigator.pop(context);
-                              showToast('Incorrect Password!');
-                            }
+                            FirebaseFirestore.instance
+                                .collection('Admin')
+                                .where('email', isEqualTo: email.text)
+                                .where('password', isEqualTo: password.text)
+                                .get()
+                                .then((QuerySnapshot querySnapshot) {
+                              if (querySnapshot.docs.isNotEmpty) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AdminScreen()));
+                              } else {
+                                Navigator.pop(context);
+                                showToast('Invalid account!');
+                                // No documents found
+                                print('No documents found.');
+                              }
+                            }).catchError((error) {
+                              print('Error fetching documents: $error');
+                            });
                           },
                           child: TextWidget(
                             text: 'Continue',
