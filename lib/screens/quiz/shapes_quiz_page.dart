@@ -99,29 +99,47 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
     );
   }
 
+int _selectedIndex = -1;
   Widget _buildOptions() {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: _options[_currentQuestionIndex].map((option) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: buttonColor,
-                onPressed: () {
-                  if (_currentQuestionIndex == 9) {
-                    _showScoreDialog();
-                  } else {
-                    _checkAnswer(option);
-                  }
-                },
-                child: Text(option)),
-          );
-        }).toList(),
-      ),
-    );
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: _options[_currentQuestionIndex].asMap().entries.map((entry) {
+      int index = entry.key;
+      String option = entry.value;
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: MaterialButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          color: _selectedIndex == index ? buttonColor : Colors.white,
+          onPressed: () {
+        
+           // print the index of the clicked button
+
+              setState(() {
+                  _selectedIndex = index; // Update the selected index
+                });
+
+                 
+
+
+
+            if (_currentQuestionIndex == 9) {
+              _showScoreDialog();
+            } else {
+              _checkAnswer(option);
+            }
+          },
+          child: Text(option,),
+        ),
+      );
+    }).toList(),
+  ),
+);
+
   }
 
   Future<void> _checkAnswer(String selectedOption) async {
