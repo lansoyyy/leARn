@@ -30,142 +30,144 @@ class _LandingScreenState extends State<LandingScreen> {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            Image.asset(
-              'assets/images/logo-removebg-preview.png',
-              height: 250,
-            ),
-            const SizedBox(
-              height: 250,
-            ),
-            ButtonWidget(
-              radius: 100,
-              color: primary,
-              label: 'Continue',
-              onPressed: () async {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: SizedBox(
-                        height: 100,
-                        child: TextFieldWidget(
-                          controller: name,
-                          label: 'Enter your Name',
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: TextWidget(
-                            text: 'Close',
-                            fontSize: 14,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Image.asset(
+                'assets/images/logo-removebg-preview.png',
+                height: 250,
+              ),
+              const SizedBox(
+                height: 250,
+              ),
+              ButtonWidget(
+                radius: 100,
+                color: primary,
+                label: 'Continue',
+                onPressed: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: SizedBox(
+                          height: 100,
+                          child: TextFieldWidget(
+                            controller: name,
+                            label: 'Enter your Name',
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            addLogin(name.text);
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => HomeScreen(
-                                          name: name.text,
-                                        )));
-                          },
-                          child: TextWidget(
-                            text: 'Continue',
-                            fontSize: 14,
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: TextWidget(
+                              text: 'Close',
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextFieldWidget(
-                            controller: email,
-                            label: 'Enter Email',
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          TextFieldWidget(
-                            controller: password,
-                            label: 'Enter Password',
-                            showEye: true,
-                            isObscure: true,
+                          TextButton(
+                            onPressed: () {
+                              addLogin(name.text);
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                      builder: (context) => HomeScreen(
+                                            name: name.text,
+                                          )));
+                            },
+                            child: TextWidget(
+                              text: 'Continue',
+                              fontSize: 14,
+                            ),
                           ),
                         ],
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: TextWidget(
-                            text: 'Close',
-                            fontSize: 14,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            FirebaseFirestore.instance
-                                .collection('Admin')
-                                .where('email', isEqualTo: email.text)
-                                .where('password', isEqualTo: password.text)
-                                .get()
-                                .then((QuerySnapshot querySnapshot) {
-                              if (querySnapshot.docs.isNotEmpty) {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AdminScreen()));
-                              } else {
-                                Navigator.pop(context);
-                                showToast('Invalid account!');
-                                // No documents found
-                                print('No documents found.');
-                              }
-                            }).catchError((error) {
-                              print('Error fetching documents: $error');
-                            });
-                          },
-                          child: TextWidget(
-                            text: 'Continue',
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: TextWidget(
-                text: 'Continue as Admin',
-                fontSize: 14,
+                      );
+                    },
+                  );
+                },
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextFieldWidget(
+                              controller: email,
+                              label: 'Enter Email',
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFieldWidget(
+                              controller: password,
+                              label: 'Enter Password',
+                              showEye: true,
+                              isObscure: true,
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: TextWidget(
+                              text: 'Close',
+                              fontSize: 14,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              FirebaseFirestore.instance
+                                  .collection('Admin')
+                                  .where('email', isEqualTo: email.text)
+                                  .where('password', isEqualTo: password.text)
+                                  .get()
+                                  .then((QuerySnapshot querySnapshot) {
+                                if (querySnapshot.docs.isNotEmpty) {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const AdminScreen()));
+                                } else {
+                                  Navigator.pop(context);
+                                  showToast('Invalid account!');
+                                  // No documents found
+                                  print('No documents found.');
+                                }
+                              }).catchError((error) {
+                                print('Error fetching documents: $error');
+                              });
+                            },
+                            child: TextWidget(
+                              text: 'Continue',
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: TextWidget(
+                  text: 'Continue as Admin',
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
