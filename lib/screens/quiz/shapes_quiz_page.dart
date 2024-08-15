@@ -37,6 +37,8 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
 
   List answers = [];
 
+  List corrects = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,6 +164,7 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
       // You can add your logic here, e.g., show correct answer
     }
     setState(() {
+      corrects.add(correctAnswer);
       answers.add({
         'number': _currentQuestionIndex,
         'answer': selectedOption,
@@ -205,6 +208,7 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
           title: const Text('Quiz Finished'),
           content: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
@@ -214,6 +218,7 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextWidget(
                           text: '#${answers[i]['number'] + 1}',
@@ -223,7 +228,7 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
                           width: 50,
                         ),
                         TextWidget(
-                          text: 'Answer: ${answers[i]['answer']}',
+                          text: '${answers[i]['answer']}',
                           fontSize: 18,
                           color: answers[i]['isCorrect']
                               ? Colors.green
@@ -238,6 +243,17 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
                           fontSize: 18,
                           fontFamily: 'Bold',
                         ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        answers[i]['isCorrect']
+                            ? const SizedBox()
+                            : TextWidget(
+                                text: 'Answer: ${corrects[i]}',
+                                fontSize: 18,
+                                color: Colors.green,
+                                fontFamily: 'Bold',
+                              ),
                       ],
                     ),
                   ),
