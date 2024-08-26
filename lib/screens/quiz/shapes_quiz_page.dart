@@ -216,47 +216,55 @@ class _ShapesQuizPageState extends State<ShapesQuizPage> {
                 const Divider(),
                 for (int i = 0; i < answers.length; i++)
                   SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextWidget(
-                          text: '#${answers[i]['number'] + 1}',
-                          fontSize: 14,
-                        ),
-                        const SizedBox(
-                          width: 50,
-                        ),
-                        TextWidget(
-                          text: '${answers[i]['answer']}',
-                          fontSize: 18,
-                          color: answers[i]['isCorrect']
-                              ? Colors.green
-                              : Colors.red,
-                          fontFamily: 'Bold',
-                        ),
-                        const SizedBox(
-                          width: 50,
-                        ),
-                        TextWidget(
-                          text: answers[i]['isCorrect'] ? 'Correct' : 'Wrong',
-                          fontSize: 18,
-                          fontFamily: 'Bold',
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        answers[i]['isCorrect']
-                            ? const SizedBox()
-                            : TextWidget(
-                                text: 'Answer: ${corrects[i]}',
-                                fontSize: 18,
-                                color: Colors.green,
-                                fontFamily: 'Bold',
-                              ),
-                      ],
-                    ),
-                  ),
+                      child: Column(
+                    children: [
+                      Text('${i + 1}. ${_questions[i]}'),
+                      answers[i]['isCorrect']
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                ),
+                                TextWidget(
+                                  text: ' ${corrects[i]}',
+                                  fontSize: 18,
+                                ),
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                    ),
+                                    TextWidget(
+                                      text: ' ${corrects[i]}',
+                                      fontSize: 18,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.close,
+                                      color: Colors.red,
+                                    ),
+                                    TextWidget(
+                                      text: answers[i]['answer'],
+                                      fontSize: 18,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                    ],
+                  )),
               ],
             ),
           ),
