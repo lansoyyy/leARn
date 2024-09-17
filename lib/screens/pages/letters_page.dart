@@ -79,7 +79,7 @@ class LettersPage extends StatelessWidget {
                     builder: (context) => ARView(
                           name: letters[index],
                           file:
-                              'assets/models/Letter/Letter_${letters[index]}.gltf',
+                              'assets/models/Letter/Letter_${letters[index]}.glb',
                         )));
               },
               child: Container(
