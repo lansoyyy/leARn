@@ -36,15 +36,16 @@ class NumbersPage extends StatelessWidget {
           fontFamily: 'Bold',
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => NumbersQuizPage(
                         name: name,
                       )));
             },
-            icon: const Icon(
-              Icons.quiz,
+            child: TextWidget(
+              text: 'Take an Assessment',
+              fontSize: 14,
             ),
           ),
         ],
@@ -73,7 +74,7 @@ class NumbersPage extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  'assets/images/numbers/${index + 1}.jpg',
+                  'assets/images/numbers/${index + 1}.png',
                 ),
               ),
             ),

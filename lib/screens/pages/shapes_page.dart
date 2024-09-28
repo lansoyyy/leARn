@@ -35,15 +35,16 @@ class ShapesPage extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ShapesQuizPage(
                         name: name,
                       )));
             },
-            icon: const Icon(
-              Icons.quiz,
+            child: TextWidget(
+              text: 'Take an Assessment',
+              fontSize: 14,
             ),
           ),
         ],

@@ -53,15 +53,16 @@ class LettersPage extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => LetterQuizPage(
                         name: name,
                       )));
             },
-            icon: const Icon(
-              Icons.quiz,
+            child: TextWidget(
+              text: 'Take an Assessment',
+              fontSize: 14,
             ),
           ),
         ],
@@ -89,12 +90,8 @@ class LettersPage extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                child: Center(
-                  child: TextWidget(
-                    text: letters[index],
-                    fontSize: 75,
-                    fontFamily: 'Bold',
-                  ),
+                child: Image.asset(
+                  'assets/images/letters/${index + 1}.png',
                 ),
               ),
             ),

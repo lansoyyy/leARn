@@ -36,15 +36,16 @@ class ColorsPage extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ColorsQuizPage(
                         name: name,
                       )));
             },
-            icon: const Icon(
-              Icons.quiz,
+            child: TextWidget(
+              text: 'Take an Assessment',
+              fontSize: 14,
             ),
           ),
         ],

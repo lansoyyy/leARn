@@ -25,7 +25,8 @@ class _ARViewState extends State<ARView> {
 
             await flutterTts.setVolume(1.0);
 
-            await flutterTts.setPitch(1.0);
+            await flutterTts.setPitch(0.75);
+
             await flutterTts.speak(widget.name);
           },
         ),
