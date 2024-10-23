@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
 import 'package:solar_mobile/screens/quiz/letter_quiz_page.dart';
+import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
 class LettersPage extends StatelessWidget {
@@ -47,56 +48,78 @@ class LettersPage extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
         title: TextWidget(
-          text: 'Letters',
+          text: 'Alphabet',
           fontSize: 18,
           fontFamily: 'Bold',
         ),
         centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => LetterQuizPage(
-                        name: name,
-                      )));
-            },
-            child: TextWidget(
-              text: 'Take an Assessment',
-              fontSize: 14,
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 500,
+            child: GridView.builder(
+              itemCount: letters.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ARView(
+                                name: letters[index],
+                                file:
+                                    'assets/models/Letter/Letter_${letters[index]}.glb',
+                              )));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                      ),
+                      child: Image.asset(
+                        'assets/images/letters/${index + 1}.png',
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
-        ],
-      ),
-      body: GridView.builder(
-        itemCount: letters.length,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ARView(
-                          name: letters[index],
-                          file:
-                              'assets/models/Letter/Letter_${letters[index]}.glb',
-                        )));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 20),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => LetterQuizPage(
+                            name: name,
+                          )));
+                },
+                child: Container(
+                  width: 175,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: primary,
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                ),
-                child: Image.asset(
-                  'assets/images/letters/${index + 1}.png',
+                  child: Center(
+                    child: TextWidget(
+                      text: 'Take assessment',
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

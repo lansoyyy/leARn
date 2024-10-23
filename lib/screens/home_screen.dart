@@ -4,6 +4,7 @@ import 'package:solar_mobile/screens/pages/colors_page.dart';
 import 'package:solar_mobile/screens/pages/letters_page.dart';
 import 'package:solar_mobile/screens/pages/numbers_page.dart';
 import 'package:solar_mobile/screens/pages/shapes_page.dart';
+import 'package:solar_mobile/utils/colors.dart';
 import 'package:solar_mobile/widgets/drawer_widget.dart';
 import 'package:solar_mobile/widgets/text_widget.dart';
 
@@ -46,30 +47,78 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/432488241_433203445943170_352186029455523305_n.jpg',
-                  ),
-                  fit: BoxFit.cover),
-            ),
+            // decoration: const BoxDecoration(
+            //   image: DecorationImage(
+            //       image: AssetImage(
+            //         'assets/images/432488241_433203445943170_352186029455523305_n.jpg',
+            //       ),
+            //       fit: BoxFit.cover),
+            // ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 20, 20),
-                  child: TextWidget(
-                    text: 'Welcome ${widget.name}',
-                    fontSize: 18,
-                    fontFamily: 'Bold',
-                    color: Colors.black,
+                  padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/images/logo-removebg-preview.png',
+                        height: 50,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextWidget(
+                            text: 'Hi ${widget.name}',
+                            fontSize: 14,
+                            fontFamily: 'Medium',
+                            color: Colors.black,
+                          ),
+                          TextWidget(
+                            text: 'Welcome to our Dashboard',
+                            fontSize: 14,
+                            fontFamily: 'Medium',
+                            color: Colors.black,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Container(
+                    width: 175,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                      child: TextWidget(
+                        text: 'Choose any category',
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -83,10 +132,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     name: widget.name,
                                   )));
                         },
-                        child: Image.asset(
-                          items[0]['image'],
+                        child: Container(
                           height: 200,
                           width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: primary!,
+                            ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  items[0]['image'],
+                                ),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),
@@ -99,10 +158,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     name: widget.name,
                                   )));
                         },
-                        child: Image.asset(
-                          items[1]['image'],
+                        child: Container(
                           height: 200,
                           width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: primary!,
+                            ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  items[1]['image'],
+                                ),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),
@@ -123,10 +192,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     name: widget.name,
                                   )));
                         },
-                        child: Image.asset(
-                          items[2]['image'],
+                        child: Container(
                           height: 200,
                           width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: primary!,
+                            ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  items[2]['image'],
+                                ),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),
@@ -139,10 +218,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     name: widget.name,
                                   )));
                         },
-                        child: Image.asset(
-                          items[3]['image'],
+                        child: Container(
                           height: 200,
                           width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: primary!,
+                            ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  items[3]['image'],
+                                ),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),

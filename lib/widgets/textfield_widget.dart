@@ -67,7 +67,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: 'Bold',
-                  color: primary,
+                  color: Colors.red[700],
                   fontWeight: FontWeight.bold,
                 ),
               ),

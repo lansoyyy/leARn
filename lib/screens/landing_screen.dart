@@ -43,11 +43,11 @@ class _LandingScreenState extends State<LandingScreen> {
                 height: 250,
               ),
               const SizedBox(
-                height: 250,
+                height: 100,
               ),
               ButtonWidget(
                 radius: 100,
-                color: primary,
+                color: Colors.red[700],
                 label: 'Continue',
                 onPressed: () async {
                   showDialog(
@@ -69,6 +69,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             child: TextWidget(
                               text: 'Close',
                               fontSize: 14,
+                              color: Colors.red[700],
                             ),
                           ),
                           TextButton(
@@ -83,6 +84,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             child: TextWidget(
                               text: 'Continue',
                               fontSize: 14,
+                              color: Colors.red[700],
                             ),
                           ),
                         ],
@@ -92,9 +94,12 @@ class _LandingScreenState extends State<LandingScreen> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
-              TextButton(
+              ButtonWidget(
+                radius: 100,
+                color: Colors.red[700],
+                label: 'Continue as Head',
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -104,6 +109,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             TextFieldWidget(
+                              color: primary,
+                              hintColor: Colors.red,
                               controller: email,
                               label: 'Enter Email',
                             ),
@@ -126,6 +133,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             child: TextWidget(
                               text: 'Close',
                               fontSize: 14,
+                              color: Colors.red[700],
                             ),
                           ),
                           TextButton(
@@ -154,6 +162,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             child: TextWidget(
                               text: 'Continue',
                               fontSize: 14,
+                              color: Colors.red[700],
                             ),
                           ),
                         ],
@@ -161,10 +170,9 @@ class _LandingScreenState extends State<LandingScreen> {
                     },
                   );
                 },
-                child: TextWidget(
-                  text: 'Continue as Admin',
-                  fontSize: 14,
-                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),
