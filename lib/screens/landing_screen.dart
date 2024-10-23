@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:solar_mobile/screens/admin_dashboard_screen.dart';
 import 'package:solar_mobile/screens/admin_screen.dart';
 import 'package:solar_mobile/services/add_login.dart';
 import 'package:solar_mobile/utils/colors.dart';
@@ -148,7 +149,10 @@ class _LandingScreenState extends State<LandingScreen> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const AdminScreen()));
+                                              AdminDashboardScreen(
+                                                name: querySnapshot
+                                                    .docs.first['name'],
+                                              )));
                                 } else {
                                   Navigator.pop(context);
                                   showToast('Invalid account!');
