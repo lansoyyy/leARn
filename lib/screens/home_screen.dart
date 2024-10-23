@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solar_mobile/screens/ar_view.dart';
+import 'package:solar_mobile/screens/dashboard_screen.dart';
 import 'package:solar_mobile/screens/pages/colors_page.dart';
 import 'package:solar_mobile/screens/pages/letters_page.dart';
 import 'package:solar_mobile/screens/pages/numbers_page.dart';
@@ -46,6 +47,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primary,
+        child: const Icon(
+          Icons.dashboard,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => DashboardScreen(
+                    name: widget.name,
+                  )));
+        },
+      ),
       body: SafeArea(
         child: SizedBox(
             width: double.infinity,
