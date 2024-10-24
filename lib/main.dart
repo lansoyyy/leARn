@@ -5,11 +5,6 @@ import 'package:solar_mobile/screens/admin_screen.dart';
 import 'package:solar_mobile/screens/landing_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    name: 'learn-7123f',
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 
